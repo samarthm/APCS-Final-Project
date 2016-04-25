@@ -1,6 +1,10 @@
 package tesseractpart1;
 
  
+
+ 
+
+ 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.awt.Image;
@@ -10,7 +14,7 @@ import java.util.Scanner;
 
 public class Tesseractpart1 {
 
-    private File image1;
+private File image1;
 private File image2;
 private Tesseract instance1;
 private Tesseract instance2;
@@ -20,7 +24,8 @@ public Tesseractpart1(){
     
 }
 
-public static void main(String[] args) {
+
+private static void main(String[] args) {
 File imageFile = new File("/Users/samarthmadduru/Downloads/random.png");
 Tesseract instance = Tesseract.getInstance(); //
 
@@ -53,6 +58,7 @@ public String getOutput(String foo){
 }
 
 public String getOutput(){ 
+    System.out.print("Enter a file name with the location: ");
     Scanner sc = new Scanner(System.in);
     lineInput=sc.nextLine();
     image2 = new File(lineInput);

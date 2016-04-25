@@ -1,8 +1,5 @@
 package tesseractpart1;
 
-
-import tesseractpart1.Tesseractpart1;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -14,10 +11,11 @@ import tesseractpart1.Tesseractpart1;
  *
  * @author samarthmadduru
  */
-public class TestClassFor_Tesseractpart1 {
-    public static void main(){
+public class TestClassFor_Tesseractpart1{
+    private static void main(String[] args){
         Tesseractpart1 test=new Tesseractpart1();
-        test.getOutput();
+        String str = test.getOutput();
+        System.out.print(str);
         //test.getOutput("/Users/samarthmadduru/Downloads/random.png");
     }
 }
