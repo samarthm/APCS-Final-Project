@@ -5,21 +5,10 @@
  */
 package tesseractpart1;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.awt.*;
-import static java.awt.SystemColor.desktop;
-import java.io.*;
 import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
-import net.sourceforge.tess4j.*;
-import java.util.Scanner;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.jsoup.Jsoup;
@@ -57,10 +46,11 @@ public class ReturnResults {
         patternDomainName = Pattern.compile(DOMAIN_NAME_PATTERN);
     }
 
-    public static void main(String[] args) {
+    private static void main(String[] args) {
 
         ReturnResults obj = new ReturnResults();
         ArrayList<String> result = obj.returnFullLink("stop+signs");
+        result=obj.returnFilteredSearchResults(result);
         for (String temp : result) {
             System.out.println(temp);
         }
@@ -76,6 +66,28 @@ public class ReturnResults {
         }
         return domainName;
 
+    }
+
+    public ArrayList<String> returnFilteredSearchResults(ArrayList<String> arr) {
+        for (int i = 0; i < arr.size(); i++) {
+            if (arr.get(i).contains("https://www.google") || arr.get(i).contains("/settings/ads") || arr.get(i).contains("googleusercontent")) {
+                arr.remove(i);
+            }
+        }
+        
+        return arr;
+
+    }
+
+    public ArrayList<String> returnFullLink(String query) {
+        ArrayList<String> variableArray = new ArrayList<>();
+        ArrayList<String> urls = getDataFromGoogle(query);
+        for (int i = 0; i < 10; i++) {
+            int index;
+            index = urls.get(i).indexOf("&sa");
+            variableArray.add(urls.get(i).substring(7, index));
+        }
+        return variableArray;
     }
 
     public ArrayList<String> getDataFromGoogle(String query) {
@@ -109,18 +121,4 @@ public class ReturnResults {
 
         return result;
     }
-    
-    public ArrayList<String> returnFullLink(String query){
-        ArrayList<String> variableArray = new ArrayList<>();
-        ArrayList<String> urls =  getDataFromGoogle(query);
-        for(int i=0; i<5; i++){
-            int index;
-            index = urls.get(i).indexOf("&sa");
-            variableArray.add(urls.get(i).substring(7, index));
-        }
-        return variableArray;
-    }
-
 }
-
-

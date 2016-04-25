@@ -16,6 +16,6 @@ public class TestClassFor_Tesseractpart1{
         Tesseractpart1 test=new Tesseractpart1();
         String str = test.getOutput();
         System.out.print(str);
-        //test.getOutput("/Users/samarthmadduru/Downloads/random.png");
+        //test.getOutput("/Users/samarthmadduru/Downloads/stupid.png");
     }
 }
