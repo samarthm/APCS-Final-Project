@@ -19,10 +19,10 @@ import java.util.Scanner;
  */
 public class TestClassFor_All {
     static ReturnResults rtres= new ReturnResults();
-    static GoogleSearch dsrch= new GoogleSearch();
+    static OpenLinkOneClick dsrch= new OpenLinkOneClick();
     static Tesseractpart1 test=new Tesseractpart1();
     
-    public static void main(String[] args){
+    private static void main(String[] args){
             System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
             String str=test.getOutput();
             ArrayList<String> hello = new ArrayList<>();
