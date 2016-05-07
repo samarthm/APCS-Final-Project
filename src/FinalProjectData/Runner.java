@@ -5,6 +5,10 @@
  */
 package FinalProjectData;
 
+import java.awt.Dimension;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author samarthmadduru
@@ -38,6 +42,7 @@ public class Runner extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jFileChooser1 = new javax.swing.JFileChooser();
         jLabel2 = new javax.swing.JLabel();
+        textArea1 = new java.awt.TextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
@@ -55,7 +60,9 @@ public class Runner extends javax.swing.JFrame {
         });
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/locationpendinginit.png"))); // NOI18N
-        jLabel2.setText("jLabel2");
+        jLabel2.setText("");
+        jLabel2.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+        jLabel2.setBounds(new java.awt.Rectangle(0, 0, 500, 300));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -73,7 +80,8 @@ public class Runner extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2)))
+                        .addComponent(jLabel2))
+                    .addComponent(textArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 1004, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(190, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -91,6 +99,8 @@ public class Runner extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addComponent(jLabel2)))
+                .addGap(1, 1, 1)
+                .addComponent(textArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(247, 247, 247))
@@ -99,6 +109,7 @@ public class Runner extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    @SuppressWarnings("empty-statement")
     private void jFileChooser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooser1ActionPerformed
         // TODO add your handling code here:
         String myResponse = evt.toString();
@@ -109,6 +120,9 @@ public class Runner extends javax.swing.JFrame {
         url = myResponse.substring(myResponse.indexOf("selectedFile=") + 13, myResponse.indexOf(",useFileHiding"));
         
         System.out.println(url);
+        
+        jLabel2.setIcon(new ImageIcon(new ImageIcon(url).getImage().getScaledInstance(500, 200, Image.SCALE_DEFAULT)));;
+
     }//GEN-LAST:event_jFileChooser1ActionPerformed
 
     /**
@@ -152,5 +166,6 @@ public class Runner extends javax.swing.JFrame {
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private java.awt.TextArea textArea1;
     // End of variables declaration//GEN-END:variables
 }
