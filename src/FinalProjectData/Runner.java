@@ -182,7 +182,7 @@ public class Runner extends javax.swing.JFrame {
         
         out = t1.getOutput(url);
         if(out.length()>100){
-           out=out.substring(0, 100);
+           out=out.substring(0, 100).replaceAll("\n","");
         }
         ArrayList<String> resme;
         ReturnResults crest = new ReturnResults();
