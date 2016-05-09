@@ -132,6 +132,9 @@
       </Properties>
     </Component>
     <Component class="java.awt.TextArea" name="textArea1">
+      <Events>
+        <EventHandler event="textValueChanged" listener="java.awt.event.TextListener" parameters="java.awt.event.TextEvent" handler="textArea1TextValueChanged"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

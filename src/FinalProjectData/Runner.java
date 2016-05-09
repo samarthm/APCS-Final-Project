@@ -7,6 +7,7 @@ package FinalProjectData;
 
 import java.awt.Dimension;
 import java.awt.Image;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 /**
@@ -22,7 +23,7 @@ public class Runner extends javax.swing.JFrame {
     private int loc;
     private int loc1;
     private String url; 
-    
+    private String out;
     
     public Runner() {
         initComponents();
@@ -63,6 +64,12 @@ public class Runner extends javax.swing.JFrame {
         jLabel2.setText("");
         jLabel2.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         jLabel2.setBounds(new java.awt.Rectangle(0, 0, 500, 300));
+
+        textArea1.addTextListener(new java.awt.event.TextListener() {
+            public void textValueChanged(java.awt.event.TextEvent evt) {
+                textArea1TextValueChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -122,9 +129,41 @@ public class Runner extends javax.swing.JFrame {
         System.out.println(url);
         
         jLabel2.setIcon(new ImageIcon(new ImageIcon(url).getImage().getScaledInstance(500, 200, Image.SCALE_DEFAULT)));;
-
+        
+        System.out.println(outResultinTextBox(url));
+        
     }//GEN-LAST:event_jFileChooser1ActionPerformed
 
+    private void textArea1TextValueChanged(java.awt.event.TextEvent evt) {//GEN-FIRST:event_textArea1TextValueChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textArea1TextValueChanged
+
+    
+    public String outResultinTextBox(String myUrl){
+        Tesseractpart1 t1= new Tesseractpart1();
+        
+        out = t1.getOutput(url);
+        if(out.length()>100){
+           out=out.substring(0, 100);
+        }
+        ArrayList<String> resme;
+        ReturnResults crest = new ReturnResults();
+        String ret = "";
+        try{
+            resme = crest.returnFilteredSearchResults(crest.getDataFromGoogle(out));
+        }
+        catch (NullPointerException e){
+            return "<NO SOURCES FOUND>";
+        }
+        for(int i = 0; i<resme.size(); i++){
+            ret = ret + resme.get(i).substring(7,resme.get(i).indexOf("&sa")-1) + "\n";
+            
+        }
+        
+        return ret;
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
