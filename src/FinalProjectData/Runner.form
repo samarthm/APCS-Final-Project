@@ -138,6 +138,9 @@
       <Events>
         <EventHandler event="textValueChanged" listener="java.awt.event.TextListener" parameters="java.awt.event.TextEvent" handler="textArea1TextValueChanged"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="textArea1.setDropTarget(new DropTarget() {&#xa;        public synchronized void drop(DropTargetDropEvent evt) {&#xa;            try {&#xa;                evt.acceptDrop(DnDConstants.ACTION_COPY);&#xa;                List&lt;File&gt; droppedFiles = (List&lt;File&gt;) evt&#xa;                        .getTransferable().getTransferData(&#xa;                                DataFlavor.javaFileListFlavor);&#xa;                for (File file : droppedFiles) {&#xa;                    /*&#xa;                     * NOTE:&#xa;                     *  When I change this to a println,&#xa;                     *  it prints the correct path&#xa;                     */&#xa;                    url = file.getAbsolutePath();&#xa;                    jLabel2.setIcon(new ImageIcon(new ImageIcon(url).getImage().getScaledInstance(500, 200, Image.SCALE_DEFAULT)));&#xa;                    textArea1.setText(outResultinTextBox(url));&#xa;                }&#xa;            } catch (Exception ex) {&#xa;                ex.printStackTrace();&#xa;            }&#xa;        }&#xa;    });"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

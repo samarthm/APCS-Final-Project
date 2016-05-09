@@ -7,7 +7,13 @@ package FinalProjectData;
 
 import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.dnd.DnDConstants;
+import java.awt.dnd.DropTarget;
+import java.awt.dnd.DropTargetDropEvent;
+import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -76,6 +82,28 @@ public class Runner extends javax.swing.JFrame {
                 textArea1TextValueChanged(evt);
             }
         });
+        textArea1.setDropTarget(new DropTarget() {
+            public synchronized void drop(DropTargetDropEvent evt) {
+                try {
+                    evt.acceptDrop(DnDConstants.ACTION_COPY);
+                    List<File> droppedFiles = (List<File>) evt
+                    .getTransferable().getTransferData(
+                        DataFlavor.javaFileListFlavor);
+                    for (File file : droppedFiles) {
+                        /*
+                        * NOTE:
+                        *  When I change this to a println,
+                        *  it prints the correct path
+                        */
+                        url = file.getAbsolutePath();
+                        jLabel2.setIcon(new ImageIcon(new ImageIcon(url).getImage().getScaledInstance(500, 200, Image.SCALE_DEFAULT)));
+                        textArea1.setText(outResultinTextBox(url));
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -134,9 +162,11 @@ public class Runner extends javax.swing.JFrame {
         
         System.out.println(url);
         
-        jLabel2.setIcon(new ImageIcon(new ImageIcon(url).getImage().getScaledInstance(500, 200, Image.SCALE_DEFAULT)));;
+        jLabel2.setIcon(new ImageIcon(new ImageIcon(url).getImage().getScaledInstance(500, 200, Image.SCALE_DEFAULT)));
         
         System.out.println(outResultinTextBox(url));
+        
+        textArea1.setText(outResultinTextBox(url));
         
         
         
