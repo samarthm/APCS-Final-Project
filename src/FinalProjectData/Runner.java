@@ -194,7 +194,7 @@ public class Runner extends javax.swing.JFrame {
             return "<NO SOURCES FOUND>";
         }
         for(int i = 0; i<resme.size(); i++){
-            ret = ret + resme.get(i).substring(7,resme.get(i).indexOf("&sa")-1) + "\n";
+            ret = ret + resme.get(i).substring(7,resme.get(i).indexOf("&sa")) + "\n";
             
         }
         
