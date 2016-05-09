@@ -112,6 +112,9 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jFileChooser1ActionPerformed"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="jFileChooser1.setAcceptAllFileFilterUsed(false);&#xa;FileNameExtensionFilter filter = new FileNameExtensionFilter(&quot;.jpg&quot;, &quot;.png&quot;, &quot;.gif&quot;, &quot;.jpeg&quot;);&#xa;jFileChooser1.setFileFilter(filter);&#xa;FileNameExtensionFilter filter1 = new FileNameExtensionFilter(&quot;.png&quot;, &quot;.jpg&quot;, &quot;.gif&quot;, &quot;.jpeg&quot;);&#xa;jFileChooser1.setFileFilter(filter1);"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>

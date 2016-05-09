@@ -9,6 +9,7 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -54,6 +55,11 @@ public class Runner extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/logo.png"))); // NOI18N
 
+        jFileChooser1.setAcceptAllFileFilterUsed(false);
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(".jpg", ".png", ".gif", ".jpeg");
+        jFileChooser1.setFileFilter(filter);
+        FileNameExtensionFilter filter1 = new FileNameExtensionFilter(".png", ".jpg", ".gif", ".jpeg");
+        jFileChooser1.setFileFilter(filter1);
         jFileChooser1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jFileChooser1ActionPerformed(evt);
@@ -131,6 +137,8 @@ public class Runner extends javax.swing.JFrame {
         jLabel2.setIcon(new ImageIcon(new ImageIcon(url).getImage().getScaledInstance(500, 200, Image.SCALE_DEFAULT)));;
         
         System.out.println(outResultinTextBox(url));
+        
+        
         
     }//GEN-LAST:event_jFileChooser1ActionPerformed
 
