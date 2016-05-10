@@ -15,5 +15,12 @@ You can get RevMeUp via Java.
 ```bash
 $ git install https://github.com/samarthm/APCS-Final-Project.git
 ```
+
+Once installed, build the project (easiest way to do this is using NetBeans), run the jar file once created, and you're good to go!!
+
+ALTERNATE METHOD: 
+
+Navigate to [ProjectName]/src/FinalProjectData/Runner.java and run it.
+
 ## How is it done?
-Magic.
+Magic. It's way too long to explain.
