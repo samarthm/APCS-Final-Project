@@ -83,6 +83,7 @@ public class Runner extends javax.swing.JFrame {
                 textArea1TextValueChanged(evt);
             }
         });
+        // Jerry Zhou is calling me a liar even though there is one way to write first 4 lines of the try statement. Here is the source: http://stackoverflow.com/questions/9669530/drag-and-drop-file-path-to-java-swing-jtextfield
         textArea1.setDropTarget(new DropTarget() {
             public synchronized void drop(DropTargetDropEvent evt) {
                 try {
@@ -160,7 +161,7 @@ public class Runner extends javax.swing.JFrame {
         url = myResponse.substring(myResponse.indexOf("selectedFile=") + 13, myResponse.indexOf(",useFileHiding"));
         
         System.out.println(url);
-        
+        //Compiled Icon information from like 8 different Java API's and SO threads.
         jLabel2.setIcon(new ImageIcon(new ImageIcon(url).getImage().getScaledInstance(500, 200, Image.SCALE_DEFAULT)));
         
         System.out.println(outResultinTextBox(url));
