@@ -91,11 +91,6 @@ public class Runner extends javax.swing.JFrame {
                     .getTransferable().getTransferData(
                         DataFlavor.javaFileListFlavor);
                     for (File file : droppedFiles) {
-                        /*
-                        * NOTE:
-                        *  When I change this to a println,
-                        *  it prints the correct path
-                        */
                         url = file.getAbsolutePath();
                         jLabel2.setIcon(new ImageIcon(new ImageIcon(url).getImage().getScaledInstance(500, 200, Image.SCALE_DEFAULT)));
                         textArea1.setText(outResultinTextBox(url));
