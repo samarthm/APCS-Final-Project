@@ -24,3 +24,6 @@ Navigate to [ProjectName]/src/FinalProjectData/Runner.java and run it.
 
 ## How is it done?
 Magic. It's way too long to explain.
+
+## Example
+!['me](http://puu.sh/oMggf/b47ac0b0f2.png)
