@@ -77,6 +77,7 @@ public class Runner extends javax.swing.JFrame {
         jLabel2.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         jLabel2.setBounds(new java.awt.Rectangle(0, 0, 500, 300));
 
+        textArea1.setText("No results have been found yet. Please wait 3-4 seconds for output after upload.");
         textArea1.addTextListener(new java.awt.event.TextListener() {
             public void textValueChanged(java.awt.event.TextEvent evt) {
                 textArea1TextValueChanged(evt);
@@ -98,6 +99,9 @@ public class Runner extends javax.swing.JFrame {
                         url = file.getAbsolutePath();
                         jLabel2.setIcon(new ImageIcon(new ImageIcon(url).getImage().getScaledInstance(500, 200, Image.SCALE_DEFAULT)));
                         textArea1.setText(outResultinTextBox(url));
+                        if(outResultinTextBox(url).equals("")){
+                            textArea1.setText("Image has yielded no output. Try another image.");
+                        }
                     }
                 } catch (Exception ex) {
                     ex.printStackTrace();
