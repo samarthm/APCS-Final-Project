@@ -40,7 +40,11 @@ Tesseract instance = Tesseract.getInstance(); //
 }
 
 
-   
+/**
+ * 
+ * @param foo
+ * @return output given a String, one version of method. Input should be the file location as a String.
+ */   
 
 public String getOutput(String foo){ 
     image1 = new File(foo);
@@ -56,6 +60,11 @@ public String getOutput(String foo){
         
     }
 }
+
+/**
+ * 
+ * @returns same as other getOutput method with the exception that this one prompts you for the location.
+ */
 
 public String getOutput(){ 
     System.out.print("Enter a file name with the location: ");

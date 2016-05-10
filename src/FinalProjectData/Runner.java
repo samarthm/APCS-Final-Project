@@ -181,6 +181,11 @@ public class Runner extends javax.swing.JFrame {
     }//GEN-LAST:event_textArea1TextValueChanged
 
     
+    /**
+     * Returns results as a String. Applies fundamentals of other classes
+     * @param  myUrl
+     * @return String
+     */
     public String outResultinTextBox(String myUrl){
         Tesseractpart1 t1= new Tesseractpart1();
         

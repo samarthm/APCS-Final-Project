@@ -28,9 +28,10 @@ public class ReturnResults {
     /**
      *
      * @param str
-     * @return
+     * @return result of one link. Just one link.
      * @throws java.net.MalformedURLException
      */
+
     public static URL returnOneResult(String str) throws MalformedURLException {
         str = str.replace(" ", "+");
         String resultAsString = initial + str + extension;
@@ -57,6 +58,12 @@ public class ReturnResults {
         System.out.println(result.size());
     }
 
+    
+   /**
+    * 
+    * @param url
+    * @return domain name and redacted the unnecessary parts of the url
+    */ 
     public String getDomainName(String url) {
 
         String domainName = "";
@@ -67,7 +74,13 @@ public class ReturnResults {
         return domainName;
 
     }
-
+    
+    /**
+     * 
+     * @param arr
+     * @returns results as an arraylist after search
+     */
+    
     public ArrayList<String> returnFilteredSearchResults(ArrayList<String> arr) {
         for (int i = 0; i < arr.size(); i++) {
             if (arr.get(i).contains("https://www.google") || arr.get(i).contains("/settings/ads") || arr.get(i).contains("googleusercontent")) {
@@ -78,7 +91,12 @@ public class ReturnResults {
         return arr;
 
     }
-
+    
+    /**
+     * 
+     * @param query
+     * @returns shortened version of the URL
+     */
     public ArrayList<String> returnFullLink(String query) {
         ArrayList<String> variableArray = new ArrayList<>();
         ArrayList<String> urls = getDataFromGoogle(query);
@@ -89,7 +107,12 @@ public class ReturnResults {
         }
         return variableArray;
     }
-
+    
+    /**
+     * 
+     * @param query
+     * @returns data in pure form after the search
+     */
     public ArrayList<String> getDataFromGoogle(String query) {
 
         ArrayList<String> result = new ArrayList<String>();
