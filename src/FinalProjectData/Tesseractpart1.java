@@ -50,8 +50,8 @@ Tesseract instance = Tesseract.getInstance(); //
 public String getOutput(String foo){ 
     image1 = new File(foo);
     instance1 = Tesseract.getInstance();
-    File tessDataFolder = LoadLibs.extractTessResources("tessdata"); // Maven build bundles English data
-    instance1.setDatapath(tessDataFolder.getParent());
+    File tessDataFolder = LoadLibs.extractTessResources("tessdata"); // From the tess4j api
+    instance1.setDatapath(tessDataFolder.getParent()); // Used to find the tessdata location
     try {
 
         String result = instance1.doOCR(image1);
