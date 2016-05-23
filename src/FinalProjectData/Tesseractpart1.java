@@ -11,6 +11,7 @@ import java.awt.Image;
 import java.io.*;
 import net.sourceforge.tess4j.*;
 import java.util.Scanner;
+import net.sourceforge.tess4j.util.LoadLibs;
 
 public class Tesseractpart1 {
 
@@ -49,6 +50,8 @@ Tesseract instance = Tesseract.getInstance(); //
 public String getOutput(String foo){ 
     image1 = new File(foo);
     instance1 = Tesseract.getInstance();
+    File tessDataFolder = LoadLibs.extractTessResources("tessdata"); // Maven build bundles English data
+    instance1.setDatapath(tessDataFolder.getParent());
     try {
 
         String result = instance1.doOCR(image1);
