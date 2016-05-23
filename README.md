@@ -2,7 +2,7 @@
 A Java application that specializes in reverse image search. (APCS Final Project)
 
 [EDIT] Direct download link for Mac is live at: http://bit.ly/1TpjD2T
-[SOON] Support for Windows
+</br>[SOON] Support for Windows
 
 ## Where should I use RevMeUP?
 
