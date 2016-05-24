@@ -31,7 +31,8 @@ public class Runner extends javax.swing.JFrame {
     private int loc1;
     private String url; 
     private String out;
-    
+    String hello = "";
+
     public Runner() {
         initComponents();
     }
@@ -51,6 +52,7 @@ public class Runner extends javax.swing.JFrame {
         jFileChooser1 = new javax.swing.JFileChooser();
         jLabel2 = new javax.swing.JLabel();
         textArea1 = new java.awt.TextArea();
+        textArea2 = new java.awt.TextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
@@ -60,6 +62,7 @@ public class Runner extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(700, 400));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/logo.png"))); // NOI18N
+        textArea2.setText("Suggested search goes here. Image has not loaded yet.");
 
         jFileChooser1.setAcceptAllFileFilterUsed(false);
         FileNameExtensionFilter filter = new FileNameExtensionFilter(".jpg", ".png", ".gif", ".jpeg");
@@ -83,7 +86,6 @@ public class Runner extends javax.swing.JFrame {
                 textArea1TextValueChanged(evt);
             }
         });
-        // Jerry Zhou is calling me a liar even though there is one way to write first 4 lines of the try statement. Here is the source: http://stackoverflow.com/questions/9669530/drag-and-drop-file-path-to-java-swing-jtextfield
         textArea1.setDropTarget(new DropTarget() {
             public synchronized void drop(DropTargetDropEvent evt) {
                 try {
@@ -92,6 +94,43 @@ public class Runner extends javax.swing.JFrame {
                     .getTransferable().getTransferData(
                         DataFlavor.javaFileListFlavor);
                     for (File file : droppedFiles) {
+                        /*
+                        * NOTE:
+                        *  When I change this to a println,
+                        *  it prints the correct path
+                        */
+                        url = file.getAbsolutePath();
+                        jLabel2.setIcon(new ImageIcon(new ImageIcon(url).getImage().getScaledInstance(500, 200, Image.SCALE_DEFAULT)));
+                        textArea1.setText(outResultinTextBox(url));
+                        if(outResultinTextBox(url).equals("")){
+                            textArea1.setText("Image has yielded no output. Try another image.");
+                        }
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+
+        textArea1.setText("No results have been found yet. Please wait 3-4 seconds for output after upload.");
+        textArea2.addTextListener(new java.awt.event.TextListener() {
+            public void textValueChanged(java.awt.event.TextEvent evt) {
+                textArea2TextValueChanged(evt);
+            }
+        });
+        textArea2.setDropTarget(new DropTarget() {
+            public synchronized void drop(DropTargetDropEvent evt) {
+                try {
+                    evt.acceptDrop(DnDConstants.ACTION_COPY);
+                    List<File> droppedFiles = (List<File>) evt
+                    .getTransferable().getTransferData(
+                        DataFlavor.javaFileListFlavor);
+                    for (File file : droppedFiles) {
+                        /*
+                        * NOTE:
+                        *  When I change this to a println,
+                        *  it prints the correct path
+                        */
                         url = file.getAbsolutePath();
                         jLabel2.setIcon(new ImageIcon(new ImageIcon(url).getImage().getScaledInstance(500, 200, Image.SCALE_DEFAULT)));
                         textArea1.setText(outResultinTextBox(url));
@@ -119,11 +158,14 @@ public class Runner extends javax.swing.JFrame {
                         .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2))
-                    .addComponent(textArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 1004, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(190, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(textArea2, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(348, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,15 +175,14 @@ public class Runner extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(jLabel2)))
-                .addGap(1, 1, 1)
-                .addComponent(textArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(textArea1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textArea2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(247, 247, 247))
@@ -175,6 +216,10 @@ public class Runner extends javax.swing.JFrame {
     private void textArea1TextValueChanged(java.awt.event.TextEvent evt) {//GEN-FIRST:event_textArea1TextValueChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_textArea1TextValueChanged
+
+    private void textArea2TextValueChanged(java.awt.event.TextEvent evt) {//GEN-FIRST:event_textArea2TextValueChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textArea2TextValueChanged
 
     
     /**
@@ -249,5 +294,6 @@ public class Runner extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private java.awt.TextArea textArea1;
+    private java.awt.TextArea textArea2;
     // End of variables declaration//GEN-END:variables
 }

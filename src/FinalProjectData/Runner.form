@@ -49,14 +49,19 @@
                       <Component id="filler1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <Component id="jFileChooser1" min="-2" pref="498" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="jFileChooser1" min="-2" pref="498" max="-2" attributes="0"/>
+                          <Component id="textArea1" min="-2" pref="501" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                          <Component id="textArea2" min="-2" pref="483" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <Component id="textArea1" min="-2" pref="1004" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="190" max="32767" attributes="0"/>
+              <EmptySpace pref="348" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -69,18 +74,16 @@
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jFileChooser1" min="-2" pref="242" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="jFileChooser1" alignment="0" min="-2" pref="242" max="-2" attributes="0"/>
+                  <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-              <Component id="textArea1" min="-2" pref="211" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="textArea1" alignment="0" min="-2" pref="202" max="-2" attributes="0"/>
+                  <Component id="textArea2" alignment="0" min="-2" pref="202" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace max="32767" attributes="0"/>
               <Component id="filler1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="247" max="-2" attributes="0"/>
@@ -137,6 +140,15 @@
     <Component class="java.awt.TextArea" name="textArea1">
       <Events>
         <EventHandler event="textValueChanged" listener="java.awt.event.TextListener" parameters="java.awt.event.TextEvent" handler="textArea1TextValueChanged"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="textArea1.setText(&quot;No results have been found yet. Please wait 3-4 seconds for output after upload.&quot;);"/>
+        <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="textArea1.setDropTarget(new DropTarget() {&#xa;        public synchronized void drop(DropTargetDropEvent evt) {&#xa;            try {&#xa;                evt.acceptDrop(DnDConstants.ACTION_COPY);&#xa;                List&lt;File&gt; droppedFiles = (List&lt;File&gt;) evt&#xa;                        .getTransferable().getTransferData(&#xa;                                DataFlavor.javaFileListFlavor);&#xa;                for (File file : droppedFiles) {&#xa;                    /*&#xa;                     * NOTE:&#xa;                     *  When I change this to a println,&#xa;                     *  it prints the correct path&#xa;                     */&#xa;                    url = file.getAbsolutePath();&#xa;                    jLabel2.setIcon(new ImageIcon(new ImageIcon(url).getImage().getScaledInstance(500, 200, Image.SCALE_DEFAULT)));&#xa;                    textArea1.setText(outResultinTextBox(url));&#xa;                    if(outResultinTextBox(url).equals(&quot;&quot;)){&#xa;                        textArea1.setText(&quot;Image has yielded no output. Try another image.&quot;);&#xa;                    }&#xa;                }&#xa;            } catch (Exception ex) {&#xa;                ex.printStackTrace();&#xa;            }&#xa;        }&#xa;    });"/>
+      </AuxValues>
+    </Component>
+    <Component class="java.awt.TextArea" name="textArea2">
+      <Events>
+        <EventHandler event="textValueChanged" listener="java.awt.event.TextListener" parameters="java.awt.event.TextEvent" handler="textArea2TextValueChanged"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="textArea1.setText(&quot;No results have been found yet. Please wait 3-4 seconds for output after upload.&quot;);"/>
