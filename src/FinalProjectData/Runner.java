@@ -32,7 +32,8 @@ public class Runner extends javax.swing.JFrame {
     private String url; 
     private String out;
     String hello = "";
-
+    private Summarization sm = new Summarization();
+    private Tesseractpart1 tp1 = new Tesseractpart1();
     public Runner() {
         initComponents();
     }
@@ -62,13 +63,9 @@ public class Runner extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(700, 400));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/logo.png"))); // NOI18N
-        textArea2.setText("Suggested search goes here. Image has not loaded yet.");
+        textArea2.setText("Suggested search goes here. This might take a small amount of time");
 
-        jFileChooser1.setAcceptAllFileFilterUsed(false);
-        FileNameExtensionFilter filter = new FileNameExtensionFilter(".jpg", ".png", ".gif", ".jpeg");
-        jFileChooser1.setFileFilter(filter);
-        FileNameExtensionFilter filter1 = new FileNameExtensionFilter(".png", ".jpg", ".gif", ".jpeg");
-        jFileChooser1.setFileFilter(filter1);
+
         jFileChooser1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jFileChooser1ActionPerformed(evt);
@@ -80,7 +77,7 @@ public class Runner extends javax.swing.JFrame {
         jLabel2.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         jLabel2.setBounds(new java.awt.Rectangle(0, 0, 500, 300));
 
-        textArea1.setText("No results have been found yet. Please wait 3-4 seconds for output after upload.");
+        textArea1.setText("No results have been found yet. Please wait 10-11 seconds for output after upload.");
         textArea1.addTextListener(new java.awt.event.TextListener() {
             public void textValueChanged(java.awt.event.TextEvent evt) {
                 textArea1TextValueChanged(evt);
@@ -94,16 +91,19 @@ public class Runner extends javax.swing.JFrame {
                     .getTransferable().getTransferData(
                         DataFlavor.javaFileListFlavor);
                     for (File file : droppedFiles) {
-                        /*
-                        * NOTE:
-                        *  When I change this to a println,
-                        *  it prints the correct path
-                        */
                         url = file.getAbsolutePath();
                         jLabel2.setIcon(new ImageIcon(new ImageIcon(url).getImage().getScaledInstance(500, 200, Image.SCALE_DEFAULT)));
                         textArea1.setText(outResultinTextBox(url));
                         if(outResultinTextBox(url).equals("")){
+                            textArea1.setText("");
                             textArea1.setText("Image has yielded no output. Try another image.");
+                        }
+                        if(sm.mine(tp1.getOutput(url)).size() != 0){
+                            for(int p = 0; p<sm.mine(tp1.getOutput(url)).size(); p++){
+                                hello += sm.mine(tp1.getOutput(url)).get(p) + " ";
+                            }
+                            textArea2.setText("");
+                            textArea2.setText("Suggested additional search: "+ hello);
                         }
                     }
                 } catch (Exception ex) {
@@ -112,7 +112,6 @@ public class Runner extends javax.swing.JFrame {
             }
         });
 
-        textArea1.setText("No results have been found yet. Please wait 3-4 seconds for output after upload.");
         textArea2.addTextListener(new java.awt.event.TextListener() {
             public void textValueChanged(java.awt.event.TextEvent evt) {
                 textArea2TextValueChanged(evt);
@@ -126,16 +125,19 @@ public class Runner extends javax.swing.JFrame {
                     .getTransferable().getTransferData(
                         DataFlavor.javaFileListFlavor);
                     for (File file : droppedFiles) {
-                        /*
-                        * NOTE:
-                        *  When I change this to a println,
-                        *  it prints the correct path
-                        */
                         url = file.getAbsolutePath();
                         jLabel2.setIcon(new ImageIcon(new ImageIcon(url).getImage().getScaledInstance(500, 200, Image.SCALE_DEFAULT)));
                         textArea1.setText(outResultinTextBox(url));
                         if(outResultinTextBox(url).equals("")){
+                            textArea1.setText("");
                             textArea1.setText("Image has yielded no output. Try another image.");
+                        }
+                        if(sm.mine(tp1.getOutput(url)).size() != 0){
+                            for(int p = 0; p<sm.mine(tp1.getOutput(url)).size(); p++){
+                                hello += sm.mine(tp1.getOutput(url)).get(p) + " ";
+                            }
+                            textArea2.setText("");
+                            textArea2.setText("Suggested additional search: "+hello);
                         }
                     }
                 } catch (Exception ex) {
